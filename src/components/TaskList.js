@@ -32,26 +32,27 @@ const TaskList = () => {
         {tasks.map((task) => (
           <li key={task.id}>
             <Grid container direction="row" alignItems="center" spacing={2}>
-              <Grid item>
+              <Grid item xs={2}>
                 <Checkbox
                   checked={task.completed}
                   onChange={() => handleToggleTask(task.id)}
                   sx={{ '& .MuiSvgIcon-root': { fontSize: 30 } }}
                 />
               </Grid>
-              <Grid item xs>
-                {task.text}
+              <Grid item xs={6}>
+              <span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
+                  {task.text}
+                </span>
               </Grid>
-              <Grid item>
-                <Button variant="contained" onClick={() => handleEditTask(task.id, task.text)}>
+              <Grid item xs >
+                <Button sx={{margin: 1}} variant="contained" onClick={() => handleEditTask(task.id, task.text)}>
                   <EditIcon/>
                 </Button>
-              </Grid>
-              <Grid item>
-                <Button color="error" variant="contained" onClick={() => handleDeleteTask(task.id)}>
+                <Button sx={{margin: 1}} color="error" variant="contained" onClick={() => handleDeleteTask(task.id)}>
                   <DeleteIcon/>
                 </Button>
               </Grid>
+              
             </Grid>
           </li>
         ))}
